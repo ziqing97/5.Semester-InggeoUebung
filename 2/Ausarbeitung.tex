@@ -1,0 +1,152 @@
+\documentclass[12pt]{article}
+\usepackage{setspace,graphicx,amsmath,geometry,titlesec,soul,bm,subfigure}
+\titleformat{\section}[block]{\LARGE\bfseries}{\arabic{section}}{1em}{}[]
+\titleformat{\subsection}[block]{\Large\bfseries\mdseries}{\arabic{section}.\arabic{subsection}}{1em}{}[]
+\titleformat{\subsubsection}[block]{\normalsize\bfseries}{\arabic{subsection}-\alph{subsubsection}}{1em}{}[]
+\titleformat{\paragraph}[block]{\small\bfseries}{[\arabic{paragraph}]}{1em}{}[]
+\setmainfont{Times New Roman}
+\renewcommand{\baselinestretch}{1.15}
+\renewcommand\contentsname{Inhaltverzeichnis}
+\geometry{a4paper,left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\begin{document}
+	\newpagestyle{main}{            
+		\sethead{Ziqing Yu}{Ingenieurgeodäsie Übung 2}{3218051}     
+		\setfoot{}{\thepage}{}     
+		\headrule                                     
+		\footrule                                       
+	}
+	\pagestyle{main}
+\tableofcontents
+\newpage
+\section{Einleitung}
+In dieser Übung muss man entscheiden, welches Tachymeter für die Absteckung man nutzen kann. Die Vermessungstoleranz wird in Prozent und die gesamte Toleranz sind gegeben. Die Koordinaten der bekannten Punkte und Standardabweichungen davon sind auch bekannt. Mit diesen Bedingungen und der Lageskizze soll man die notwendige Genauigkeit von Tachymeter rechnen und einen nutzbaren Tachymeter bestimmen. 
+\section{Nummerische Werte}
+Aus der Graph ist es einfach zu lesen: $X_A = 0$, $Y_A = 0$, $X_B = 200$, $Y_B = 0$, $X_S = 100$, $Y_ S = -20,5$. Die Länge von $AS$ nennen wir $s$. Der Winkel zwischen $AB$ und $AS$ nennen wir $\alpha$. 
+\begin{equation*}
+s = \sqrt{100^2 + 20,5^2} = 102,080 m
+\end{equation*}
+\begin{equation*}
+\alpha = \arctan(\frac{20,5}{100}) = 11,585° = 0,202 rad
+\end{equation*}
+\section{Standardabweichung von S}
+Aus der Aufgabe ist die gesamte Maßtoleranz 10 mm und die Vermessungstoleranz ist 1/3 davon. Dann haben wir $T_M = T \cdot \sqrt{2p - p^2}$, wobei $T_M$ Vermessungstoleranz, $T$ gesamte Toleranz und $p = \frac{1}{3}$ sind. Weil die Vermessungstoleranz mit mindesten $95 \%$ Wahrscheinlichkeit eingehalten werden soll, ist Quantil $k$ gleich 1,96. Damit kann man die erwartete Standardabweichung von S ausrechnen.
+
+\begin{equation*}
+\sigma_{XS} = \sigma_{YS} = \frac{T_M}{2k} = 1,901 mm
+\end{equation*}
+\newpage
+\section{Fehlerfortpflanzung und Rechnung}
+Die Koordinaten von S werden aus Koordinaten von A und B und die gemessene Länge und Winkel gerechnet. 
+\begin{equation}
+X_S = X_A + s \cdot \cos (t_{AS}) = X_A + s \cdot \cos(t_{AB} - \alpha) = X_A + s \cdot \cos(\arctan(\frac{Y_A - Y_B}{X_A - X_B}) - \alpha)
+\end{equation}
+\begin{equation}
+Y_S = Y_A + s \cdot \sin (t_{AS}) = Y_A + s \cdot \sin(t_{AB} - \alpha) = Y_A + s \cdot \sin(\arctan(\frac{Y_A - Y_B}{X_A - X_B}) - \alpha)
+\end{equation}
+Wegen der Fehlerfortpflanzung muss man die Ableitung machen. 
+\newline
+Die Ableitung von $X_S$
+\newline
+\begin{equation}
+\frac{\partial X_S}{\partial X_A} = 1 - s \cdot \sin (\arctan(\frac{Y_A - Y_B}{X_A - X_B}) - \alpha) \cdot \frac{1}{(\frac{Y_B - Y_A}{X_B - X_A})^2 + 1} \cdot (-\frac{Y_B - Y_A}{(X_B - X_A)^2}) \cdot (-1)
+\end{equation}
+\begin{equation}
+\frac{\partial X_S}{\partial X_B} = -s \cdot \sin (\arctan(\frac{Y_A - Y_B}{X_A - X_B}) - \alpha) \cdot \frac{1}{(\frac{Y_B - Y_A}{X_B - X_A})^2 + 1} \cdot (-\frac{Y_B - Y_A}{(X_B - X_A)^2}) 
+\end{equation}
+\begin{equation}
+\frac{\partial X_S}{\partial Y_A} = -s \cdot \sin (\arctan(\frac{Y_A - Y_B}{X_A - X_B}) - \alpha) \cdot \frac{1}{(\frac{Y_B - Y_A}{X_B - X_A})^2 + 1} \cdot (- \frac{1}{X_B - X_A})
+\end{equation}
+\begin{equation}
+\frac{\partial X_S}{\partial Y_B} = -s \cdot \sin (\arctan(\frac{Y_A - Y_B}{X_A - X_B}) - \alpha) \cdot \frac{1}{(\frac{Y_B - Y_A}{X_B - X_A})^2 + 1} \cdot (\frac{1}{X_B - X_A})
+\end{equation}
+\begin{equation}
+\frac{\partial X_S}{\partial s} = \cos(\arctan(\frac{Y_A - Y_B}{X_A - X_B}) - \alpha)
+\end{equation}
+\begin{equation}
+\frac{\partial X_S}{\partial \alpha} = -s \cdot \sin(\arctan(\frac{Y_A - Y_B}{X_A - X_B}) - \alpha) \cdot (-1)
+\end{equation}
+\newline
+Die Ableitung von $Y_S$
+\newline
+\begin{equation}
+\frac{\partial Y_S}{\partial X_A} = s \cdot \cos (\arctan(\frac{Y_A - Y_B}{X_A - X_B}) - \alpha) \cdot \frac{1}{(\frac{Y_B - Y_A}{X_B - X_A})^2 + 1} \cdot (- \frac{Y_B - Y_A}{(X_B - X_A)^2}) \cdot (-1)
+\end{equation}
+\begin{equation}
+\frac{\partial Y_S}{\partial X_B} = s \cdot \cos (\arctan(\frac{Y_A - Y_B}{X_A - X_B}) - \alpha) \cdot \frac{1}{(\frac{Y_B - Y_A}{X_B - X_A})^2 + 1} \cdot (- \frac{Y_B - Y_A}{(X_B - X_A)^2})
+\end{equation}
+\begin{equation}
+\frac{\partial Y_S}{\partial Y_A} = 1 + s \cdot \cos (\arctan(\frac{Y_A - Y_B}{X_A - X_B}) - \alpha) \cdot \frac{1}{(\frac{Y_B - Y_A}{X_B - X_A})^2 + 1} \cdot \frac{-1}{X_B - X_A}
+\end{equation}
+\begin{equation}
+\frac{\partial Y_S}{\partial Y_A} = 1 + s \cdot \cos (\arctan(\frac{Y_A - Y_B}{X_A - X_B}) - \alpha) \cdot \frac{1}{(\frac{Y_B - Y_A}{X_B - X_A})^2 + 1} \cdot \frac{1}{X_B - X_A}
+\end{equation}
+\begin{equation}
+\frac{\partial Y_S}{\partial s} = \sin(\arctan(\frac{Y_A - Y_B}{X_A - X_B}) - \alpha)
+\end{equation}
+\begin{equation}
+\frac{\partial Y_S}{\partial \alpha} = -s \cdot \cos(\arctan(\frac{Y_A - Y_B}{X_A - X_B}) - \alpha) \cdot (-1)
+\end{equation} 
+Denn alle Bekannte und Beobachtungen sind unkorreliert: 
+\begin{equation*}
+\begin{bmatrix}
+(\frac{\partial X_S}{\partial X_A})^2 & (\frac{\partial X_S}{\partial X_B})^2 & (\frac{\partial X_S}{\partial Y_A})^2 & (\frac{\partial X_S}{\partial Y_B})^2 & (\frac{\partial X_S}{\partial s})^2   & (\frac{\partial X_S}{\partial \alpha})^2\\
+(\frac{\partial Y_S}{\partial X_A})^2 & (\frac{\partial Y_S}{\partial X_B})^2 & (\frac{\partial Y_S}{\partial Y_A})^2 & (\frac{\partial Y_S}{\partial Y_B})^2 & (\frac{\partial Y_S}{\partial s})^2   & (\frac{\partial Y_S}{\partial \alpha})^2
+\end{bmatrix} \cdot 
+\begin{bmatrix}
+(\sigma_{XA})^2 \\ (\sigma_{XB})^2 \\ (\sigma_{YA})^2 \\ (\sigma_{YB})^2 \\ (\sigma_s)^2 \\ (\sigma_{\alpha})^2 
+\end{bmatrix} = 
+\begin{bmatrix}
+(\sigma_{XS})^2 \\ (\sigma_{YS})^2
+\end{bmatrix}
+\end{equation*}
+Man könnte diese Gleichung wie folgend entwickeln
+\begin{equation*}
+\begin{bmatrix}
+(\frac{\partial X_S}{\partial X_A})^2 & (\frac{\partial X_S}{\partial X_B})^2 & (\frac{\partial X_S}{\partial Y_A})^2 & (\frac{\partial X_S}{\partial Y_B})^2\\
+(\frac{\partial Y_S}{\partial X_A})^2 & (\frac{\partial Y_S}{\partial X_B})^2 & (\frac{\partial Y_S}{\partial Y_A})^2 & (\frac{\partial Y_S}{\partial Y_B})^2
+\end{bmatrix} \cdot 
+\begin{bmatrix}
+(\sigma_{XA})^2 \\ (\sigma_{XB})^2 \\ (\sigma_{YA})^2 \\ (\sigma_{YB})^2 
+\end{bmatrix} + 
+\begin{bmatrix}
+(\frac{\partial X_S}{\partial s})^2   & (\frac{\partial X_S}{\partial \alpha})^2\\
+(\frac{\partial Y_S}{\partial s})^2   & (\frac{\partial Y_S}{\partial \alpha})^2
+\end{bmatrix} \cdot
+\begin{bmatrix}
+(\sigma_s)^2 \\ (\sigma_{\alpha})^2 
+\end{bmatrix} = 
+\begin{bmatrix}
+(\sigma_{XS})^2 \\ (\sigma_{YS})^2
+\end{bmatrix}
+\end{equation*}
+\begin{equation*}
+\begin{bmatrix}
+(\sigma_s)^2 \\ (\sigma_{\alpha})^2 
+\end{bmatrix} = 
+\begin{bmatrix}
+(\frac{\partial X_S}{\partial s})^2   & (\frac{\partial X_S}{\partial \alpha})^2\\
+(\frac{\partial Y_S}{\partial s})^2   & (\frac{\partial Y_S}{\partial \alpha})^2
+\end{bmatrix}^{-1}
+\left(
+\begin{bmatrix}
+(\sigma_{XS})^2 \\ (\sigma_{YS})^2
+\end{bmatrix} - 
+\begin{bmatrix}
+(\frac{\partial X_S}{\partial X_A})^2 & (\frac{\partial X_S}{\partial X_B})^2 & (\frac{\partial X_S}{\partial Y_A})^2 & (\frac{\partial X_S}{\partial Y_B})^2\\
+(\frac{\partial Y_S}{\partial X_A})^2 & (\frac{\partial Y_S}{\partial X_B})^2 & (\frac{\partial Y_S}{\partial Y_A})^2 & (\frac{\partial Y_S}{\partial Y_B})^2
+\end{bmatrix} \cdot 
+\begin{bmatrix}
+(\sigma_{XA})^2 \\ (\sigma_{XB})^2 \\ (\sigma_{YA})^2 \\ (\sigma_{YB})^2 
+\end{bmatrix}
+\right)
+\end{equation*}
+Danach setzt man die nummerische Werte ein und wir kriegen die notwendige Genauigkeit des Tachymeters.
+\begin{equation*}
+\sigma_s = 1,125 mm
+\end{equation*}
+\begin{equation*}
+\sigma_{\alpha} = 0,942 mgon
+\end{equation*}
+\section{Bestimmung von Tachymeter}
+Ein Ingenieurtachymeter ist dafür notwendig, z.B, Leica TS30 hat die Winkelgenauigkeit $0,01 mgon$ für Richtungswinkel und $1mm + 1ppm$ für Strecke. Diese Genauigkeit reicht für die Absteckung. 
+\end{document}

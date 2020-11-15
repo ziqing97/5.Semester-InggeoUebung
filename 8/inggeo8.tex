@@ -1,0 +1,41 @@
+\documentclass[12pt]{article}
+\usepackage{setspace,graphicx,amsmath,geometry,fontspec,titlesec,soul,bm,subfigure}
+\titleformat{\section}[block]{\LARGE\bfseries}{\arabic{section}}{1em}{}[]
+\titleformat{\subsection}[block]{\Large\bfseries\mdseries}{\arabic{section}.\arabic{subsection}}{1em}{}[]
+\titleformat{\subsubsection}[block]{\normalsize\bfseries}{\arabic{subsection}-\alph{subsubsection}}{1em}{}[]
+\titleformat{\paragraph}[block]{\small\bfseries}{[\arabic{paragraph}]}{1em}{}[]
+\setmainfont{Times New Roman}
+\renewcommand{\baselinestretch}{1.15}
+\renewcommand\contentsname{Inhaltverzeichnis}
+\geometry{a4paper,left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\begin{document}
+	\newpagestyle{main}{            
+		\sethead{Gruppe 3}{Übung 8}{}     
+		\setfoot{}{\thepage}{}     
+		\headrule                                     
+		\footrule                                       
+	}
+	\pagestyle{main}
+\tableofcontents
+\newpage
+\section{Einleitung}
+In dieser Übung werden Messkeller und Stadtgarten mittels der Laserscanner Leidca HDS7000 aufgenommen.
+\section{Messkonzepts}
+Weil die Aufnahmeszeit und Speicher erhöhen sich mit höherer Auflösung. In diser Übung ist die Aufnahmeszeit ca. 3 Minuten. Aus dem Datenblätter ist es zu lesen, dass die Aufnahme mit mittelere Auflösung und höher Qualität durchgeführt war.
+\section{Aufnahme Protokoll}
+Zuerst ist das Scanner im Messkeller K1 durchgeführt. An Anfang soll die Schwarz/Weiß Schachbrettziele bzw. Kugeln in den Raum gut verteilt werden, damit die Messdaten in einer einzigen Punktwolke dargestellt werden können. Die Messungen werden von zwei Scannerstandpunkten durchgeführt, wo man den ganze Raum sehen kann.\newline
+\begin{figure*}[ht]\centering
+	\subfigure[Messkeller]{
+		\includegraphics[width=0.9\textwidth]{inn.png}}
+\end{figure*}
+\newline
+Im Stadtgarten ist nur ein Bereich von Interesse. Hierfür braucht man keine künstliche Ziele und man macht direkt Scannen weil Punktwolken werden hier mittels Iterative Closest Point(ICP) ausgewertet. Man wählt 3 Standpunkten, um dene Bereich besser zu erfassen.
+\begin{figure*}[ht]\centering
+	\subfigure[Stadtgarten]{
+		\includegraphics[width=0.9\textwidth]{aus.png}}
+\end{figure*}
+\newline
+Bei der Aufnahme soll man immer auf der Seite stehen, die außer dem geplanten Bereich ist. \newline
+\newline
+Nachher werden die Daten in CIP-POOL gearbeitet, um die Punktwolken von unterschiedlichen Standpunkten zueinander zu ordnen.
+\end{document}

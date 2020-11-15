@@ -1,0 +1,7 @@
+\contentsline {section}{\numberline {1}Einleitung}{2}% 
+\contentsline {section}{\numberline {2}Teilspurminimierung}{2}% 
+\contentsline {section}{\numberline {3}Gesamtspurminimierung}{3}% 
+\contentsline {section}{\numberline {4}Ausgleichung unter Zwang}{4}% 
+\contentsline {section}{\numberline {5}HELMERT'schen Punktfehler}{5}% 
+\contentsline {section}{\numberline {6}Qualität des Netzes mit Teilspurminimierung}{6}% 
+\contentsline {section}{\numberline {7}Vergleichung}{6}% 

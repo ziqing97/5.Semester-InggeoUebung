@@ -1,0 +1,5 @@
+\contentsline {section}{\numberline {1}Einleitung}{2}%
+\contentsline {section}{\numberline {2}Nummerische Werte}{2}%
+\contentsline {section}{\numberline {3}Standardabweichung von S}{2}%
+\contentsline {section}{\numberline {4}Fehlerfortpflanzung und Rechnung}{3}%
+\contentsline {section}{\numberline {5}Bestimmung von Tachymeter}{4}%

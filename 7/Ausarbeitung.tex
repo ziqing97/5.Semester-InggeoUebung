@@ -1,0 +1,62 @@
+\documentclass[12pt]{article}
+\usepackage{setspace,graphicx,amsmath,geometry,fontspec,titlesec,soul,bm,subfigure}
+\titleformat{\section}[block]{\LARGE\bfseries}{\arabic{section}}{1em}{}[]
+\titleformat{\subsection}[block]{\Large\bfseries\mdseries}{\arabic{section}.\arabic{subsection}}{1em}{}[]
+\titleformat{\subsubsection}[block]{\normalsize\bfseries}{\arabic{subsection}-\alph{subsubsection}}{1em}{}[]
+\titleformat{\paragraph}[block]{\small\bfseries}{[\arabic{paragraph}]}{1em}{}[]
+\setmainfont{Times New Roman}
+\renewcommand{\baselinestretch}{1.15}
+\renewcommand\contentsname{Inhaltverzeichnis}
+\geometry{a4paper,left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\begin{document}
+	\newpagestyle{main}{            
+		\sethead{Ziqing Yu}{Ingenieurgeodäsie Übung 7}{3218051}     
+		\setfoot{}{\thepage}{}     
+		\headrule                                     
+		\footrule                                       
+	}
+	\pagestyle{main}
+\tableofcontents
+\newpage
+\section{Einleitung}
+In dieser Übung wird Erdmassen mit ArcScene gerechnet.
+\section{Volumen des gesamten Baugebietes}
+\begin{table}[ht] \centering
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		Fläche Höhe & 2D Flächen & 3D Flächen & Volume     \\ \hline
+		639,41      & 49589,50   & 56325,81   & 5199694,74 \\ \hline
+	\end{tabular}
+\end{table}
+\section{Volumen der Bauprobe}
+\begin{table}[ht] \centering
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		Fläche Höhe & 2D Flächen & 3D Flächen & Volume    \\ \hline
+		720         & 12549,00   & 12843,47   & 342270,96 \\ \hline
+	\end{tabular}
+\end{table}
+\section{Volumen ders Körpervolumens und Genauigkeit ohne ArcScene}
+In folgende Tabelle stehen die Punktnummer und die Koordinaten
+\begin{table}[ht] \centering
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		Punkt & Rechts {[}m{]} & Hoch {[}m{]} & Höhe {[}m{]} \\ \hline
+		184   & 3535799,2713   & 5366996,9195 & 747,8661     \\ \hline
+		185   & 3535808,8388   & 5366999,8288 & 748,4200     \\ \hline
+		210   & 3535805,9294   & 5367009,3963 & 746,7568     \\ \hline
+		209   & 3535796,3620   & 5367006,4869 & 746,1817     \\ \hline
+	\end{tabular}
+\end{table}
+\newline
+Die Flächen und Volumen sind:
+\begin{gather*}
+F_{ges} = \frac{1}{2} \cdot \sum_{i=1}^{1} (x_i - x_{i+1}) (y_i + y_{i+1}) = 100.0004 m^2 \\
+V_{ges} = F_{ges} \cdot (\frac{\sum_{i=1}^{4}h_i}{4} - 720) = 2730,6264 m^2 \\
+\end{gather*}
+Die Genauigkeit:
+\begin{gather*}
+\sigma_F = \sqrt{\frac{1}{4} \cdot \sigma^2 \cdot \sum_{i=1}^{4} ((x_i - x_{i+1})^2 + (y_i - y_{i+1})^2)} = 0,1414 m^2 \\
+\sigma_V = \sqrt{\frac{F_{ges}^2}{4} + (\frac{\sum_{i=1}^{4}h_i}{4} - 720)^2 \cdot \sigma_F^2} = 3,9891 m^2
+\end{gather*}
+\end{document}

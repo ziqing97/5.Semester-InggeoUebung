@@ -1,0 +1,2 @@
+Radius von Kreis: 350.00000000,
+Laenge von Klotoid: 64.28571429,
